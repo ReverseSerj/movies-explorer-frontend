@@ -1,0 +1,153 @@
+.header {
+  padding: 18px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+}
+
+.header__movies-container {
+  width: 100%;
+  justify-content: space-between;
+  margin-left: 44px;
+}
+
+.header__movies-btn {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.header__movies-btn:hover {
+  opacity: 0.7;
+}
+
+.header__movies-btn:first-of-type{
+  font-weight: 500;
+  margin-right: 16px;
+}
+
+.header__account-container {
+  border-radius: 40px;
+  background: #202020;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  width: 100px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.header__account-container:hover {
+ opacity: 0.7;
+}
+
+.header__account-btn {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px; /* 92.308% */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-right: 8px;
+}
+
+.header__account-icon {
+  margin-right: 3px;
+  background: url(../../images/account.svg);
+  width: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-color: #313131;
+  border-radius: 50px;
+  background-position: center center;
+}
+
+.header_main {
+  background-color: #073042;
+}
+
+.header__auth-btn {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 133.333% */
+  color: aliceblue;
+  text-decoration: none;
+  height: 32px;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.header__auth-btn:hover {
+  opacity: 0.7;
+}
+
+.header__auth-btn:last-of-type {
+  margin-left: 30px;
+  color: black;
+  background-color: #3DDC84;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
+
+.header__btn-nav {
+  display: none;
+}
+
+@media screen and (max-width: 769px) {
+  .header {
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 15px;
+ }
+
+  .header__account-container {
+    display: none;
+  }
+
+ .header__movies-container {
+    display: none;
+  }
+
+ .header__btn-nav {
+    display: unset;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0;
+    background-image: url(../../images/navmobile.svg);
+    background-color: #202020;
+    border: none;
+    cursor: pointer;
+    background-position: center;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .header {
+    padding: 18px 14px;
+  }
+
+  .header__auth-btn {
+    font-size: 10px;
+  }
+
+  .header__auth-btn:last-of-type {
+    margin-left: 14px;
+    padding: 5px 12px;
+  }
+
+  .header__btn-nav {
+    width: 20px;
+    height: 30px;
+    margin-right: 10px;
+  }
+}
+
