@@ -80,14 +80,15 @@
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 4px;
+    
+  }
+  
+  .active {
+    border-bottom: 2px solid white;
   }
 
   .navigation__link:last-of-type {
     margin:0;
-  }
-
-  .navigation__link_active {
-    border-bottom: 2px solid white;
   }
 
   .navigation__account-container {

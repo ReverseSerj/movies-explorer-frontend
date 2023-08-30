@@ -5,18 +5,20 @@ import AuthForm from '../AuthForm/AuthForm';
 
 export default function Register() {
   return (
-    <section className='register'>
-      <div className='register__container'>
-        <Logo/>
-        <AuthForm 
-          inputUserName={true} 
-          title={'Добро пожаловать!'} 
-          submitButton={'Зарегистрироваться'} 
-          question={'Уже зарегистрированы?'}
-          link={'/signin'}
-          linkTitle={'Войти'}
-        />
-      </div>
-    </section>
+    <main>
+      <section className='register'>
+        <div className='register__container'>
+          <Logo/>
+          <AuthForm 
+            inputUserName={true} 
+            title={'Добро пожаловать!'} 
+            submitButton={'Зарегистрироваться'} 
+            question={'Уже зарегистрированы?'}
+            link={'/signin'}
+            linkTitle={'Войти'}
+          />
+        </div>
+      </section>
+    </main>
   )
 }

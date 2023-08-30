@@ -1,6 +1,6 @@
 import React from "react";
 import './Navigation.css';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export default function Navigation({onClose, isOpen}) {
  return (  
@@ -8,9 +8,9 @@ export default function Navigation({onClose, isOpen}) {
     <div className={(`navigation__container ${isOpen ? 'navigation__container_opened' : ''}`)}>
       <button className="navigation__close-btn" onClick={onClose}/>
       <nav className="navigation__nav">
-        <Link to='/' className="navigation__link">Главная</Link>
-        <Link to='/movies' className="navigation__link navigation__link_active">Фильмы</Link>
-        <Link to='/saved-movies' className="navigation__link">Сохранённые фильмы</Link>
+        <NavLink to='/' className='navigation__link'>Главная</NavLink>
+        <NavLink to='/movies' className='navigation__link'>Фильмы</NavLink>
+        <NavLink to='/saved-movies' className='navigation__link'>Сохранённые фильмы</NavLink>
       </nav>
       <nav className="navigation__account-container">
         <Link to='/profile' className="navigation__account-btn">Аккаунт</Link>

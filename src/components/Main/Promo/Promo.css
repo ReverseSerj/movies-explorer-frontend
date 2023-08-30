@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (max-width:500px) { 
+@media screen and (max-width: 665px) { 
   .promo__container {
     max-height: 570px;
     padding: 0;

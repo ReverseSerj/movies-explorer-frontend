@@ -4,11 +4,11 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 export default function Movies() {
   return (
-    <>
+    <main className="main-movies">
       <SearchForm/>
       <MoviesCardList
         isFavoriteMovie={false}
       />
-    </>
+    </main>
   )
 }

@@ -44,6 +44,14 @@
   height: 16px;
 }
 
+.auth-form__input_novalid {
+  color:#EE3465;
+}
+
+.auth-form__input:focus {
+  outline: 1px solid #3456F3;
+}
+
 .auth-form__input-err {
   font-size: 10px;
   font-style: normal;
@@ -51,6 +59,7 @@
   line-height: normal;
   color: #EE3465;
   visibility: hidden;
+  min-height: 12px;
 }
 
 .auth-form__input-err_active {
@@ -71,10 +80,17 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  transition: 1.5s;
 }
 
 .auth-form__button:hover {
   opacity: 0.7;
+}
+
+.auth-form__button:disabled {
+  color:#C2C2C2;
+  background-color: #2F2F2F;
+  transition: 1.5s;
 }
 
 .auth-form__question {

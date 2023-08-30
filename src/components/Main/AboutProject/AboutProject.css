@@ -113,11 +113,11 @@
   }
 
   .about-project__frontend {
-    width: 528px;
+    width: 80%;
   }
 
   .about-project__backend {
-    width: 140px;
+    width: 20%;
   }
 
   .about-project__subtitle-frontend {
@@ -129,7 +129,7 @@
   }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 665px){
   .about-project {
     padding: 70px 0;
   }

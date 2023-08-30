@@ -25,10 +25,11 @@ export default function Profile() {
   }
 
   return (
+    <main>
       <section className="profile">
         <div className="profile__container">
-        <h2 className="profile__title">Привет, {user.name}!</h2>
-          <label className="profile__lable-input">Имя
+          <h2 className="profile__title">Привет, {user.name}!</h2>
+          <label className="profile__label-input">Имя
             <input
               className="profile__input"
               value={name}
@@ -37,15 +38,17 @@ export default function Profile() {
               maxLength='30'
               onChange={handleEditName}
               required
+              placeholder="Введите Имя"
             />
           </label>
-          <label className="profile__lable-input">E-mail
+          <label className="profile__label-input">E-mail
             <input
               className="profile__input"
               value={email}
               type='email'
               onChange={handleEditEmail}
               required
+              placeholder="Введите Email"
             />
           </label>
           <div className="profile__container">
@@ -54,11 +57,12 @@ export default function Profile() {
               <button className="profile__logout-btn">Выйти из аккаунта</button>
             </div>
             <div className={`profile__buttons-kit ${!editButton ? 'profile__buttons-invisible' : ''}`}>
-              <span className="prfile__input-err">При обновлении профиля произошла ошибка.</span>
+              <span className="profile__input-err">При обновлении профиля произошла ошибка.</span>
               <button className="profile__save-btn" onClick={handleSaveButton}>Сохранить</button>
             </div>
           </div>
         </div>
       </section>
+    </main>
   )
 }

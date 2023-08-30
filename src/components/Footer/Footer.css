@@ -1,5 +1,6 @@
 .footer {
-  margin: 0 70px;
+  padding: 0 70px;
+  background-color: #202020;
 }
 
 .footer__title {
@@ -48,14 +49,14 @@
 
 @media screen and (max-width: 769px){
   .footer {
-    margin: 0 30px;
+    padding: 0 30px;
   }
 }
 
 
 @media screen and (max-width: 500px){
  .footer {
-    margin: 0 10px;
+    padding: 0 10px;
  }
 
  .footer__title {
