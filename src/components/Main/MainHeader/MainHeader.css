@@ -1,0 +1,31 @@
+.main__header {
+  width: 100%;
+  border-bottom: 1px solid #DADADA;
+  margin: 0;
+}
+
+.main__header-title {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  max-width: 600px;
+  color: white;
+  margin: 0;
+  padding-bottom: 23px;
+}
+
+
+@media screen and (max-width: 665px){
+  .main__header {
+    max-width: 284px;
+    margin: 0 auto;
+  }
+
+  .main__header-title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+  }
+}
