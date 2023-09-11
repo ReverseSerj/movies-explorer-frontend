@@ -1,0 +1,125 @@
+.tech {
+  background: #272727;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.tech__container {
+  max-width: 1280px;
+  margin: 0 70px;
+  width: 100%;
+}
+
+.tech__title {
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px; /* 116% */
+  letter-spacing: -2px;
+  margin: 0;
+  padding-top: 90px;
+}
+
+.tech__text {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.56px;
+  max-width: 460px;
+  padding: 26px 0 100px 0;
+}
+
+
+.tech__stack {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.tech__item {
+  width: 90px;
+  height: 60px;
+  background-color: #303030;
+  border-radius: 10px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 60px;
+  letter-spacing: -0.56px;
+  font-size: 14px;
+}
+
+.tech__item:last-child {
+  margin: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .tech {
+    padding: 90px 0;
+  }
+
+  .tech__container {
+    margin: 0  50px;
+    max-width: 668px;
+  }
+
+  .tech__title {
+    padding-top: 82px;
+  }
+
+  .tech__text {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+    letter-spacing: -0.48px;
+    padding: 22px 0 83px;
+  }
+
+  .tech__stack {
+    margin: 0 auto;
+  }
+
+  .tech__item {
+    font-size: 12px;
+    width: 84px;
+    height: 57px;
+  }
+}
+
+@media screen and (max-width: 665px){
+  .tech {
+    padding: 70px 0;
+  }
+
+  .tech__title {
+    padding-top: 50px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .tech__text {
+    max-width: 292px;
+    font-size: 11px;
+    letter-spacing: -0.44px;
+    padding: 10px 0 47px;
+  }
+
+  .tech__stack {
+    display: grid;
+    grid-template-columns: repeat(2, 84px);
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+
+  .tech__container {
+    margin: 0 18px;
+  }
+}

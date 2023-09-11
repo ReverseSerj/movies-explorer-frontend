@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+}
+
+.app__content {
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  box-sizing: border-box;
+}

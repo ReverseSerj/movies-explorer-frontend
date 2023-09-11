@@ -1,0 +1,27 @@
+.register {
+  background: #202020;
+  display: flex;
+  flex-direction: column;
+  padding: 70px 0;
+}
+
+.register__container {
+  max-width: 396px;
+  width: 100%;
+  margin: auto;
+}
+
+@media screen and (max-width: 769px){
+  .register {
+    padding: 232px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .register {
+    width: 260px;
+    margin: 0 auto;
+    padding-top: 56px;
+    padding-bottom: 0;
+  }
+}
