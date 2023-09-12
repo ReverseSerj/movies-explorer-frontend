@@ -39,7 +39,8 @@ export default function MoviesCardList({isFavoriteMovie, searchText, isShortsMov
   useEffect(() => {
     if(Object.keys(currentUser).length > 0) {
       const allMoviesLocal = localStorage.getItem('allMovies');
-      Promise.all([((allMoviesLocal) ? JSON.parse(allMoviesLocal) : moviesApi.getMovies()), mainApi.getMovies()])
+      const favoriteMoviesLocal = localStorage.getItem('favoriteMovies');
+      Promise.all([((allMoviesLocal) ? JSON.parse(allMoviesLocal) : moviesApi.getMovies()), ((favoriteMoviesLocal) ? JSON.parse(favoriteMoviesLocal) : mainApi.getMovies())])
       .then((res) => {
         setAllMovies(res[0]);
         localStorage.setItem('allMovies', JSON.stringify(res[0]));
@@ -47,6 +48,7 @@ export default function MoviesCardList({isFavoriteMovie, searchText, isShortsMov
         const filteredMovie = filterMovie(searchText, isShortsMovies, res[0])
         setRenderedMoreMovies(filteredMovie);
         setFavoriteMovies(res[1]);
+        localStorage.setItem('favoriteMovies', JSON.stringify(res[1]));
       })
       .catch((err) => {
         console.log(err);
@@ -79,6 +81,7 @@ export default function MoviesCardList({isFavoriteMovie, searchText, isShortsMov
     .then((movie) => {
       const newFavMovieArray = favoriteMovies.concat([movie]);
       setFavoriteMovies(newFavMovieArray);
+      localStorage.setItem('favoriteMovies', JSON.stringify(newFavMovieArray));
       console.log(newFavMovieArray);
     })
     .catch((err) => {
@@ -93,6 +96,7 @@ export default function MoviesCardList({isFavoriteMovie, searchText, isShortsMov
         return( id !== _id);
       });
       setFavoriteMovies(newFavMovieArray);
+      localStorage.setItem('favoriteMovies', JSON.stringify(newFavMovieArray));
     })
     .catch((err) => {
       console.log(err);
@@ -121,7 +125,7 @@ export default function MoviesCardList({isFavoriteMovie, searchText, isShortsMov
         )}
         
         <div className='movies-cardlist__more'>
-        {location.pathname === '/movies' &&
+        {((location.pathname === '/movies') && (movies.length !== renderedMoreMovies.length )) &&
           <button className={`movies-cardlist__more-button ${movies.length === 0 ? 'movies-cardlist__more-button_disabled' : ''}`} type='button' onClick={moreMoviesHandler}>Ещё</button>
         }
         </div>

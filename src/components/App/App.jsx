@@ -63,7 +63,7 @@ function App() {
     setIsLoggedIn(false);
     setIsPreLoggedIn(false);
     setCurrentUser({});
-    navigate('/signin');
+    navigate('/');
   }
 
   function handleUpdateUser(data) {
@@ -110,54 +110,37 @@ function App() {
     }
   }, [isPreLoggedIn]);
 
-  let initSearchText = '';
-  const tmpSearchText = localStorage.getItem('searchText');
-  if (tmpSearchText) {
-    initSearchText = tmpSearchText;
-  }
-
-  let initIsShortMovies = false;
-  const tmpShortsMovies = localStorage.getItem('isShortMovie');
-  if (tmpShortsMovies) {
-    if(tmpShortsMovies === '0') {
-      initIsShortMovies = false;
-    } else {
-      initIsShortMovies = true;
-    }
-  }
-
-  const [searchText, setSearchText] = React.useState(initSearchText);
-  const [isShortsMovies, setIsShortsMovies] = React.useState(initIsShortMovies);
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='app__content'>
           <Routes>
-            <Route exact path='/signup' element={<Register onRegister={handleRegisterUser} error={conflictErr}/>}/>
-            <Route exact path='/signin' element={<Login onLogin={handleAuthUser} error={unauthErr}/>}/>
+            <Route element={<ProtectedRoute isUserReady={isUserReady} isAuth={false}/>}>
+              <Route exact path='/signup' element={<Register onRegister={handleRegisterUser} error={conflictErr} />}/>
+              <Route exact path='/signin' element={<Login onLogin={handleAuthUser} error={unauthErr}/>}/>
+            </Route>
             <Route exact path='/' 
               element={<>
               <Header isLoggedIn={isLoggedIn}/>
               <Main/>
               <Footer/>
             </>}/>
-            <Route element={<ProtectedRoute isUserReady={isUserReady}/>}>
-            <Route exact path='/movies'
-              element={<>
-                <Header isLoggedIn={isLoggedIn}/>
-                <Movies  searchText={searchText} setSearchText={setSearchText} isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies} />
-                <Footer/>
-            </>}/>
-            <Route exact path='/saved-movies' 
-              element={<> 
-              <Header isLoggedIn={isLoggedIn}/> 
-              <SavedMovies searchText={searchText} setSearchText={setSearchText} isShortsMovies={isShortsMovies} setIsShortsMovies={setIsShortsMovies}/>
-              <Footer/> 
-            </>}/>
-            <Route exact path='/profile'
-              element={<>
-                <Header isLoggedIn={isLoggedIn}/>
-                <Profile onUpdateUser={handleUpdateUser} error={conflictErr} updtMessege={successUpdate} onSignOut={signOut}/>
+            <Route element={<ProtectedRoute isUserReady={isUserReady} isAuth={true}/>}>
+              <Route exact path='/movies'
+                element={<>
+                  <Header isLoggedIn={isLoggedIn}/>
+                  <Movies/>
+                  <Footer/>
+              </>}/>
+              <Route exact path='/saved-movies' 
+                element={<> 
+                <Header isLoggedIn={isLoggedIn}/> 
+                <SavedMovies/>
+                <Footer/> 
+              </>}/>
+              <Route exact path='/profile'
+                element={<>
+                  <Header isLoggedIn={isLoggedIn}/>
+                  <Profile onUpdateUser={handleUpdateUser} error={conflictErr} updtMessege={successUpdate} onSignOut={signOut}/>
             </>}/>
             </Route>
             <Route path='*' element={<PageNotFound/>} />

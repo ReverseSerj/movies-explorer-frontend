@@ -1,13 +1,17 @@
 import React from "react";
 import './FilterCheckbox.css';
+import { useLocation } from 'react-router-dom';
 
 export default function FilterCheckbox({setIsShortsMovies, isShortsMovies}) {
 
+  const location = useLocation();
+  const storageVariable = location.pathname === '/movies' ? 'isShortMovieMovies' : 'isShortMoviesMovies';
+
   function checkboxHandler() {
     if(isShortsMovies){
-      localStorage.setItem('isShortMovie', '0');
+      localStorage.setItem(storageVariable, '0');
     } else {
-      localStorage.setItem('isShortMovie', '1');
+      localStorage.setItem(storageVariable, '1');
     }
     setIsShortsMovies(!isShortsMovies);
   }

@@ -2,8 +2,12 @@ import React, { useRef, useState } from "react";
 import './SearchForm.css';
 import img from '../../../images/find.svg'
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
+import { useLocation } from 'react-router-dom';
 
 export default function SeachForm({onSearch, setIsShortsMovies, isShortsMovies, searchText}) {
+
+  const location = useLocation();
+  const storageVariable = location.pathname === '/movies' ? 'searchTextMovies' : 'searchTextsMovies';
   
   const inputRef = useRef(null);
   const [error, setError] = useState('');
@@ -11,9 +15,11 @@ export default function SeachForm({onSearch, setIsShortsMovies, isShortsMovies, 
  function handleSubmit(e) {
   e.preventDefault();
   onSearch(inputRef.current.value);
-  localStorage.setItem('searchText', inputRef.current.value);
+  localStorage.setItem(storageVariable, inputRef.current.value);
   setError(inputRef.current.value === '' ? 'Введите название фильма' : '')
  }
+
+
 
   return (
     <div className='search-form'>
