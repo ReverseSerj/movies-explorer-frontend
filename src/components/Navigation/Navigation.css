@@ -15,12 +15,13 @@
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.3);
     visibility: hidden;
-    transition: visibility 1s, opacity 1s;
+    transition: visibility 1s, opacity 2s;
   }
 
   .navigation_active {
     visibility: visible;
     opacity: 100%;
+    transition: visibility 1s;
   }
 
   .navigation__container {

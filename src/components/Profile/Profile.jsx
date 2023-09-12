@@ -1,66 +1,87 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Profile.css';
-import { user } from '../../utils/constants';
-export default function Profile() {
+import  CurrentUserContext from '../../context/CurrentUserContext';
+import { useValidationForm } from "../hooks/useValidationForm";
 
-  const [name, setName] = React.useState(user.name);
-  const [email, setEmail] = React.useState(user.email);
+export default function Profile({onSignOut, onUpdateUser, error, updtMessege}) {
+
+  const currentUser = React.useContext(CurrentUserContext);
   const [editButton, setEditButton] = React.useState(false);
+  const {values, errors, isValid, setValues, handleChange, setIsValid} = useValidationForm();
+  const [editedInput, setEditedInput] = React.useState(false);
+
+  useEffect(() => {
+    setValues({...currentUser});
+    setIsValid(true);
+  }, [currentUser, setValues]);
+
+  useEffect(() => {
+    if((currentUser.name === values.name) && (currentUser.email === values.email)) {
+      setEditedInput(false);
+    } else {
+      setEditedInput(true);
+    }
+  }, [currentUser, values]);
 
   function handleEditButton() {
     setEditButton(true);
   }
 
-  function handleSaveButton(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    setEditButton(false)
-  }
-
-  function handleEditName(e) {
-    setName(e.target.value);
-  }
-
-  function handleEditEmail(e) {
-    setEmail(e.target.value)
-  }
-
+    onUpdateUser({
+      name: values.name,
+      email: values.email
+    });
+    setEditButton(false);
+  } 
+ 
   return (
     <main>
       <section className="profile">
         <div className="profile__container">
-          <h2 className="profile__title">Привет, {user.name}!</h2>
-          <label className="profile__label-input">Имя
-            <input
-              className="profile__input"
-              value={name}
-              type='text'
-              minLength='2'
-              maxLength='30'
-              onChange={handleEditName}
-              required
-              placeholder="Введите Имя"
-            />
-          </label>
-          <label className="profile__label-input">E-mail
-            <input
-              className="profile__input"
-              value={email}
-              type='email'
-              onChange={handleEditEmail}
-              required
-              placeholder="Введите Email"
-            />
-          </label>
-          <div className="profile__container">
-            <div className={`profile__buttons-kit ${editButton ? 'profile__buttons-invisible' : ''}`}>
-              <button className="profile__edit-btn" onClick={handleEditButton}>Редактировать</button>
-              <button className="profile__logout-btn">Выйти из аккаунта</button>
+          <h2 className="profile__title">Привет, {currentUser.name}!</h2>
+          <form className="profile__form" onSubmit={handleSubmit} noValidate>
+            <label className="profile__label-input">Имя
+              <input
+                name='name'
+                className={(`profile__input ${errors.name ? 'profile__input_err' : ''}`)}
+                value={values.name || ''}
+                type='text'
+                minLength='2'
+                maxLength='30'
+                pattern='^[a-zA-Zа-яЁёА-Я\s\-]+$'
+                required
+                placeholder="Введите Имя"
+                disabled={!editButton}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="profile__label-input">E-mail
+              <input
+                name='email'
+                className={(`profile__input ${errors.email ? 'profile__input_err' : ''}`)}
+                value={values.email || ''}
+                type='email'
+                pattern='^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'
+                required
+                placeholder="Введите Email"
+                disabled={!editButton}
+                onChange={handleChange}
+              />
+            </label>
+            <div className="profile__container">
+              <div className={`profile__buttons-kit ${editButton ? 'profile__buttons-invisible' : ''}`}>
+                <span className="profile__success">{updtMessege}</span>
+                <button className="profile__edit-btn" type='button' onClick={handleEditButton}>Редактировать</button>
+                <button className="profile__logout-btn" onClick={onSignOut}>Выйти из аккаунта</button>
+              </div>
+              <div className={`profile__buttons-kit ${!editButton ? 'profile__buttons-invisible' : ''}`}>
+                <span className='profile__input-err'>{error}</span>
+                <button className="profile__save-btn" disabled={!(isValid && editedInput)} type='submit'>Сохранить</button>
+              </div>
             </div>
-            <div className={`profile__buttons-kit ${!editButton ? 'profile__buttons-invisible' : ''}`}>
-              <span className="profile__input-err">При обновлении профиля произошла ошибка.</span>
-              <button className="profile__save-btn" onClick={handleSaveButton}>Сохранить</button>
-            </div>
-          </div>
+          </form>
         </div>
       </section>
     </main>

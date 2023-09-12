@@ -6,14 +6,13 @@ export function useValidationForm() {
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
+    const name = event.target.name;
+    const value = event.target.value;
 
     setValues({...values, [name]: value});
-    setErrors({...errors,  [name]: target.validationMessage });
-    setIsValid(target.closest("form").checkValidity());
+    setErrors({...errors,  [name]: event.target.validationMessage });
+    setIsValid(event.target.closest("form").checkValidity());
   };
 
-  return { values, errors, isValid, handleChange}
+  return { values, errors, isValid, setValues, handleChange, setIsValid}
 }

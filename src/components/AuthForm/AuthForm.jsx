@@ -3,15 +3,20 @@ import './AuthForm.css';
 import { Link } from 'react-router-dom';
 import { useValidationForm } from "../hooks/useValidationForm";
 
-export default function AuthForm({title, question ,inputUserName, submitButton, link, linkTitle}) {
+export default function AuthForm(props) {
   
   const form = useValidationForm();
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onSubmit(form.values);
+  } 
+
   return(
-    <form className="auth-form" noValidate>
+    <form className="auth-form" onSubmit={handleSubmit} noValidate>
       <div className="auth-form__container">
-        <h2 className="auth-form__title">{title}</h2>
-        {inputUserName &&
+        <h2 className="auth-form__title">{props.title}</h2>
+        {props.inputUserName &&
           <label className="auth-form__label-input">Имя
             <input 
               className={(`auth-form__input ${ form.errors.name ? 'auth-form__input_novalid' : ''}`)}
@@ -21,6 +26,7 @@ export default function AuthForm({title, question ,inputUserName, submitButton, 
               name='name'
               onChange={form.handleChange}
               value={form.value}
+              autoComplete="off"
               pattern='^[a-zA-Zа-яЁёА-Я\s\-]+$'
               required
             />
@@ -34,7 +40,8 @@ export default function AuthForm({title, question ,inputUserName, submitButton, 
             name='email'
             onChange={form.handleChange}
             value={form.value}
-            pattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+            autoComplete="off"
+            pattern='^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'
             required
           />
           <span className={(`auth-form__input-err ${form.errors.email ? 'auth-form__input-err_active' : ''}`)}>{form.errors.email}</span>
@@ -47,14 +54,16 @@ export default function AuthForm({title, question ,inputUserName, submitButton, 
             minLength='6'
             onChange={form.handleChange}
             value={form.value}
+            autoComplete='new-password'
             required
           />
           <span className={(`auth-form__input-err ${form.errors.password ? 'auth-form__input-err_active' : ''}`)}>{form.errors.password}</span>
         </label>
       </div>
       <div className="auth-form__container">
-        <button className='auth-form__button' type='submit' disabled={!form.isValid}>{submitButton}</button>
-        <p className='auth-form__question'>{question} <Link className='auth-form__link' to={link}>{linkTitle}</Link></p>
+        <span className="auth-form__submit-err">{props.error}</span>
+        <button className='auth-form__button' type='submit' disabled={!form.isValid}>{props.submitButton}</button>
+        <p className='auth-form__question'>{props.question} <Link className='auth-form__link' to={props.link}>{props.linkTitle}</Link></p>
       </div>
     </form>
   )

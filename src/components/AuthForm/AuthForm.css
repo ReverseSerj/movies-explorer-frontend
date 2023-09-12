@@ -141,3 +141,13 @@
     height: 550px;
   }
 }
+
+.auth-form__submit-err {
+  color: #EE3465;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-bottom: 10px;
+  text-align: center;
+}

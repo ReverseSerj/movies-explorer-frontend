@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './Header.css';
 import Logo from '../Logo/Logo';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Navigation from "../Navigation/Navigation";
 
 export default function Header({isLoggedIn}) {
 
   const [isBurgerOpened, setIsBurgerOpened] = useState(false);
+  const location = useLocation();
 
   function burgerOpen() {
     setIsBurgerOpened(true)
@@ -19,7 +20,7 @@ export default function Header({isLoggedIn}) {
   return (
     <>
       {isLoggedIn ? (
-        <header className="header">
+        <header className={`header ${location.pathname === '/'? 'header_main' : ''}`}>
           <Logo/>
           <nav className="header__movies-container">
             <Link to='/movies' className="header__movies-btn">Фильмы</Link>
@@ -31,9 +32,9 @@ export default function Header({isLoggedIn}) {
           </nav>
           <button className="header__btn-nav" onClick={burgerOpen}/>
           <Navigation isOpen={isBurgerOpened} onClose={burgerClose}/>
-      </header>
+        </header>
       ) : (
-        <header className="header header_main">
+        <header className='header header_main'>
           <Logo/>
           <nav className="header__auth-container">
             <Link to ='/signup' className="header__auth-btn">Регистрация</Link>

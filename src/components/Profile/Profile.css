@@ -33,6 +33,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  flex-wrap: wrap;
 }
 
 .profile__label-input:first-of-type {
@@ -52,6 +53,10 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.profile__input_err {
+  color: #EE3465;
 }
 
 .profile__input:focus {
@@ -105,6 +110,7 @@
   font-weight: 400;
   line-height: normal;
   margin-bottom: 20px;
+  min-height: 11px;
 }
 
 .profile__save-btn {
@@ -118,10 +124,29 @@
   opacity: 1;
   transition: opacity 0.4s ease-out;
   padding: 0;
+  transition: 1.5s;
 } 
+
+.profile__save-btn:disabled {
+  color:#C2C2C2;
+  background-color: #2F2F2F;
+  transition: 1.5s;
+}
+
 
 .profile__save-btn:hover {
   opacity: 0.7;
+}
+
+.profile__success {
+  color: #3DDC84;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+  height: 14px;
 }
 
 @media screen and (max-width: 769px) {

@@ -42,6 +42,17 @@
   opacity: 0.7;
 }
 
+.movies-cardlist__more-button_disabled {
+  display: none;
+}
+
+.movies-cardlis__not-found-movie {
+  padding-top: 100px;
+  margin: 0;
+  text-align: center;
+  font-size: 25px;
+}
+
 @media  screen and (max-width: 910px) {
   .movies-cardlist__cards {
     grid-template-columns: repeat(2, 339px);
@@ -64,12 +75,18 @@
   }
 
   .movies-cardlist__more { 
-    margin: 0 10px;
+    margin: 0 auto;
     padding-top: 76px;
     padding-bottom: 95px;
     width: 300px;
     height: 36px;
   }
+
+  .movies-cardlis__not-found-movie {
+    padding-top: 200px;
+    font-size: 15px;
+  }
+
 }
 
 @media screen and (max-width: 320px){
